@@ -10,6 +10,9 @@ load_dotenv()
 
 BOT_TOKEN: str = os.environ["BOT_TOKEN"]          # @BotFather token
 
+# Proxy (optional) — e.g. socks5://127.0.0.1:7890
+PROXY_URL: str = os.getenv("PROXY_URL", "")
+
 # Warn threshold before auto-ban
 WARN_LIMIT: int = int(os.getenv("WARN_LIMIT", "3"))
 

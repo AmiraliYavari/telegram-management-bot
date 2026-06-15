@@ -16,7 +16,7 @@ from handlers.moderation import (
 from handlers.stats import cmd_stats
 from handlers.schedule import cmd_open, cmd_close, cmd_schedule
 from utils.database import init_db
-from config import BOT_TOKEN
+from config import BOT_TOKEN, PROXY_URL
 
 logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
@@ -29,7 +29,13 @@ def main():
     init_db()
     logger.info("✅ Database initialized")
 
-    app = ApplicationBuilder().token(BOT_TOKEN).build()
+    builder = ApplicationBuilder().token(BOT_TOKEN)
+
+    if PROXY_URL:
+        builder = builder.proxy(PROXY_URL).get_updates_proxy(PROXY_URL)
+        logger.info(f"🔗 Using proxy: {PROXY_URL}")
+
+    app = builder.build()
 
     # ── Welcome ──────────────────────────────────────────────
     app.add_handler(ChatMemberHandler(welcome_new_member, ChatMemberHandler.CHAT_MEMBER))
