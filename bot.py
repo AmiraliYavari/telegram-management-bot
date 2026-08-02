@@ -15,6 +15,8 @@ from handlers.moderation import (
 )
 from handlers.stats import cmd_stats
 from handlers.schedule import cmd_open, cmd_close, cmd_schedule
+from handlers.language import cmd_setlang, cmd_setwelcome
+from handlers.economy import track_xp, cmd_rank, cmd_top
 from utils.database import init_db
 from config import BOT_TOKEN, PROXY_URL
 
@@ -56,8 +58,22 @@ def main():
     app.add_handler(CommandHandler("close",    cmd_close))
     app.add_handler(CommandHandler("schedule", cmd_schedule))
 
+    # ── Language & custom welcome message ────────────────────
+    app.add_handler(CommandHandler("setlang",    cmd_setlang))
+    app.add_handler(CommandHandler("setwelcome", cmd_setwelcome))
+
+    # ── XP / leveling ─────────────────────────────────────────
+    app.add_handler(CommandHandler("rank", cmd_rank))
+    app.add_handler(CommandHandler("top",  cmd_top))
+
     # ── Message filter (links & spam) ────────────────────────
     app.add_handler(MessageHandler(filters.ALL & ~filters.COMMAND, filter_links_and_spam))
+
+    # ── XP tracking (separate handler group so it always runs
+    #    alongside the filter above, instead of being skipped) ─
+    app.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, track_xp), group=1
+    )
 
     logger.info("🚀 Bot is running...")
     app.run_polling(allowed_updates=["message", "chat_member"])

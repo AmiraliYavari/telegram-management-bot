@@ -1,0 +1,19 @@
+{
+  "welcome_default": "👋 Welcome {mention} to <b>{chat_title}</b>! 🎉\n\n📌 Please read the group rules and enjoy the discussion.",
+  "setlang_admin_only": "⛔ Only admins can change the group language.",
+  "setlang_usage": "Usage: /setlang <code>\nAvailable: {languages}",
+  "setlang_invalid": "❌ Unknown language code. Available: {languages}",
+  "setlang_success": "✅ Group language set to {lang}.",
+  "welcome_admin_only": "⛔ Only admins can set the welcome message.",
+  "welcome_set_usage": "Usage: /setwelcome <text>\nYou can use {{name}} and {{chat_title}} as placeholders.\nUse /setwelcome reset to go back to the default message.",
+  "welcome_set_success": "✅ Custom welcome message saved.",
+  "welcome_set_reset": "✅ Welcome message reset to default.",
+  "xp_gain_cooldown_note": "",
+  "level_up": "🎉 {mention} leveled up to <b>level {level}</b>!",
+  "rank_title": "📈 <b>{name}</b>'s rank",
+  "rank_line": "🏅 Rank #{rank} — Level {level} — {xp} XP",
+  "rank_none": "You haven't earned any XP yet. Start chatting! 💬",
+  "leaderboard_title": "<b>🏆 Top members by XP</b>\n",
+  "leaderboard_line": "{medal} <b>{name}</b> — Level {level} — {xp} XP",
+  "leaderboard_empty": "📊 No XP data yet."
+}

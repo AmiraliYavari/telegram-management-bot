@@ -1,0 +1,19 @@
+{
+  "welcome_default": "👋 سلام {mention}!\nبه گروه <b>{chat_title}</b> خوش اومدی 🎉\n\n📌 لطفاً قوانین گروه رو مطالعه کن و از بحث‌های سازنده لذت ببر.",
+  "setlang_admin_only": "⛔ فقط ادمین‌ها می‌تونن زبان گروه رو تغییر بدن.",
+  "setlang_usage": "استفاده: /setlang <کد زبان>\nزبان‌های موجود: {languages}",
+  "setlang_invalid": "❌ کد زبان نامعتبره. زبان‌های موجود: {languages}",
+  "setlang_success": "✅ زبان گروه روی {lang} تنظیم شد.",
+  "welcome_admin_only": "⛔ فقط ادمین‌ها می‌تونن پیام خوش‌آمدگویی رو تنظیم کنن.",
+  "welcome_set_usage": "استفاده: /setwelcome <متن>\nمی‌تونی از {{name}} و {{chat_title}} به‌عنوان جای‌گزین استفاده کنی.\nبرای بازگشت به پیام پیش‌فرض: /setwelcome reset",
+  "welcome_set_success": "✅ پیام خوش‌آمدگویی سفارشی ذخیره شد.",
+  "welcome_set_reset": "✅ پیام خوش‌آمدگویی به حالت پیش‌فرض برگشت.",
+  "xp_gain_cooldown_note": "",
+  "level_up": "🎉 {mention} به <b>لول {level}</b> رسید!",
+  "rank_title": "📈 رتبه <b>{name}</b>",
+  "rank_line": "🏅 رتبه #{rank} — لول {level} — {xp} امتیاز",
+  "rank_none": "هنوز امتیازی کسب نکردی. شروع کن به چت کردن! 💬",
+  "leaderboard_title": "<b>🏆 برترین اعضا بر اساس امتیاز</b>\n",
+  "leaderboard_line": "{medal} <b>{name}</b> — لول {level} — {xp} امتیاز",
+  "leaderboard_empty": "📊 هنوز داده‌ای وجود نداره."
+}

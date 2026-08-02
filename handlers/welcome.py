@@ -6,6 +6,9 @@ from telegram import Update, ChatMemberUpdated
 from telegram.ext import ContextTypes
 from telegram.constants import ChatMemberStatus
 
+from utils.database import get_welcome_message
+from utils.i18n import t
+
 
 def _extract_status_change(update: ChatMemberUpdated):
     old_status = update.old_chat_member.status
@@ -27,12 +30,15 @@ async def welcome_new_member(update: Update, context: ContextTypes.DEFAULT_TYPE)
         user = result.new_chat_member.user
         chat = result.chat
 
-        await context.bot.send_message(
-            chat_id=chat.id,
-            text=(
-                f"👋 سلام {user.mention_html()}!\n"
-                f"به گروه <b>{chat.title}</b> خوش اومدی 🎉\n\n"
-                "📌 لطفاً قوانین گروه رو مطالعه کن و از بحث‌های سازنده لذت ببر."
-            ),
-            parse_mode="HTML"
-        )
+        custom = get_welcome_message(chat.id)
+        if custom:
+            # Custom templates use plain {name}/{chat_title} placeholders
+            # (kept simple on purpose — no HTML mention injection risk).
+            text = custom.format(name=user.first_name, chat_title=chat.title)
+        else:
+            text = t(
+                chat.id, "welcome_default",
+                mention=user.mention_html(), chat_title=chat.title
+            )
+
+        await context.bot.send_message(chat_id=chat.id, text=text, parse_mode="HTML")

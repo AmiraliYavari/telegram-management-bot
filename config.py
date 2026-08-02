@@ -22,3 +22,9 @@ SPAM_WINDOW_SEC: int = int(os.getenv("SPAM_WINDOW_SEC", "10"))
 
 # SQLite database path
 DB_PATH: str = os.getenv("DB_PATH", "data/bot.db")
+
+# XP awarded per (non-spam) text message
+XP_PER_MESSAGE: int = int(os.getenv("XP_PER_MESSAGE", "10"))
+
+# Minimum seconds between XP awards for the same user (anti-farming)
+XP_COOLDOWN_SEC: int = int(os.getenv("XP_COOLDOWN_SEC", "60"))
