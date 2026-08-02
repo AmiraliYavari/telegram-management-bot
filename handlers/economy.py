@@ -68,15 +68,24 @@ async def cmd_top(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not rows:
         return await update.message.reply_text(t(chat_id, "leaderboard_empty"))
 
-    lines = [t(chat_id, "leaderboard_title")]
+    entries = []
     for i, row in enumerate(rows):
         try:
             member = await context.bot.get_chat_member(chat_id, row["user_id"])
-            name = member.user.full_name
+            u = member.user
+            name = u.full_name.strip() if u.full_name else ""
+            if not name:
+                name = f"@{u.username}" if u.username else f"User {row['user_id']}"
         except Exception:
             name = f"User {row['user_id']}"
-        lines.append(
-            t(chat_id, "leaderboard_line", medal=MEDALS[i], name=name)
+        entries.append(
+            t(chat_id, "leaderboard_line", medal=MEDALS[i], name=name, count=row["msg_count"])
         )
 
-    await update.message.reply_text("\n".join(lines), parse_mode="HTML")
+    text = (
+        t(chat_id, "leaderboard_title") + "\n"
+        "┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n"
+        + "\n".join(entries) +
+        "\n┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈"
+    )
+    await update.message.reply_text(text, parse_mode="HTML")

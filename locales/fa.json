@@ -13,7 +13,7 @@
   "rank_title": "📈 رتبه <b>{name}</b>",
   "rank_line": "🏅 رتبه #{rank} — لول {level} — {xp} امتیاز",
   "rank_none": "هنوز امتیازی کسب نکردی. شروع کن به چت کردن! 💬",
-  "leaderboard_title": "<b>🏆 برترین اعضا بر اساس امتیاز</b>\n",
-  "leaderboard_line": "{medal} {name}",
+  "leaderboard_title": "🏆 <b>پرچت‌ترین‌ها</b>",
+  "leaderboard_line": "{medal}  <b>{name}</b>  <code>{count} پیام</code>",
   "leaderboard_empty": "📊 هنوز داده‌ای وجود نداره."
 }

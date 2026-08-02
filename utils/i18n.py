@@ -39,8 +39,8 @@ _FALLBACK = {
     "rank_title": "📈 {name}'s rank",
     "rank_line": "🏅 Rank #{rank} — Level {level} — {xp} XP",
     "rank_none": "You haven't earned any XP yet.",
-    "leaderboard_title": "🏆 Top members",
-    "leaderboard_line": "{medal} {name}",
+    "leaderboard_title": "🏆 Top Chatters",
+    "leaderboard_line": "{medal}  {name}  {count} msgs",
     "leaderboard_empty": "📊 No data yet.",
 }
 
