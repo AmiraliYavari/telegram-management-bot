@@ -73,11 +73,9 @@ async def cmd_top(update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
             member = await context.bot.get_chat_member(chat_id, row["user_id"])
             u = member.user
-            name = u.full_name.strip() if u.full_name else ""
-            if not name:
-                name = f"@{u.username}" if u.username else f"User {row['user_id']}"
+            name = f"@{u.username}" if u.username else "Unknown"
         except Exception:
-            name = f"User {row['user_id']}"
+            name = "Unknown"
         entries.append(
             t(chat_id, "leaderboard_line", medal=MEDALS[i], name=name, count=row["msg_count"])
         )
