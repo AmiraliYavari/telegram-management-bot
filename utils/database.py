@@ -261,6 +261,27 @@ def get_leaderboard(chat_id: int, limit: int = 10) -> list[sqlite3.Row]:
     return rows
 
 
+def get_message_leaderboard(chat_id: int, limit: int = 10) -> list[sqlite3.Row]:
+    """
+    Rank members by their real total message count (all-time), taken
+    straight from messages_log — this is *not* affected by the XP
+    cooldown, so it reflects who actually chatted the most.
+    """
+    with _conn() as con:
+        rows = con.execute(
+            """
+            SELECT user_id, COUNT(*) AS msg_count
+            FROM messages_log
+            WHERE chat_id = ?
+            GROUP BY user_id
+            ORDER BY msg_count DESC
+            LIMIT ?
+            """,
+            (chat_id, limit)
+        ).fetchall()
+    return rows
+
+
 def get_user_rank(chat_id: int, user_id: int) -> int:
     """1-based rank of the user in their group's leaderboard (0 if untracked)."""
     with _conn() as con:

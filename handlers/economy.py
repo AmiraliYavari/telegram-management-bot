@@ -15,7 +15,7 @@ Lightweight XP / leveling system for active members.
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from utils.database import add_xp, get_user_xp, get_user_rank, get_leaderboard
+from utils.database import add_xp, get_user_xp, get_user_rank, get_message_leaderboard
 from utils.i18n import t
 from config import XP_PER_MESSAGE, XP_COOLDOWN_SEC
 
@@ -61,8 +61,9 @@ async def cmd_rank(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def cmd_top(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Ranks members by how many messages they've actually sent."""
     chat_id = update.effective_chat.id
-    rows = get_leaderboard(chat_id, limit=10)
+    rows = get_message_leaderboard(chat_id, limit=10)
 
     if not rows:
         return await update.message.reply_text(t(chat_id, "leaderboard_empty"))
@@ -75,8 +76,7 @@ async def cmd_top(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception:
             name = f"User {row['user_id']}"
         lines.append(
-            t(chat_id, "leaderboard_line",
-              medal=MEDALS[i], name=name, level=row["level"], xp=row["xp"])
+            t(chat_id, "leaderboard_line", medal=MEDALS[i], name=name, count=row["msg_count"])
         )
 
     await update.message.reply_text("\n".join(lines), parse_mode="HTML")
