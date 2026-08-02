@@ -76,7 +76,7 @@ async def cmd_top(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception:
             name = f"User {row['user_id']}"
         lines.append(
-            t(chat_id, "leaderboard_line", medal=MEDALS[i], name=name, count=row["msg_count"])
+            t(chat_id, "leaderboard_line", medal=MEDALS[i], name=name)
         )
 
     await update.message.reply_text("\n".join(lines), parse_mode="HTML")

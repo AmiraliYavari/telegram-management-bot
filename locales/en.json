@@ -14,6 +14,6 @@
   "rank_line": "🏅 Rank #{rank} — Level {level} — {xp} XP",
   "rank_none": "You haven't earned any XP yet. Start chatting! 💬",
   "leaderboard_title": "<b>🏆 Top members by XP</b>\n",
-  "leaderboard_line": "{medal} <b>{name}</b> — {count} messages",
+  "leaderboard_line": "{medal} {name}",
   "leaderboard_empty": "📊 No XP data yet."
 }
